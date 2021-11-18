@@ -13,7 +13,7 @@ def get_letter(entry: str):
 def get_pwd(entry: str):
     return entry.split(' ')[2]
 
-def validate_pwd(pwd: str, letter: str, min: int, max:int):
+def validate_pwd_pt1(pwd: str, letter: str, min: int, max: int):
     count_letter = 0
 
     for i in pwd:
@@ -25,17 +25,37 @@ def validate_pwd(pwd: str, letter: str, min: int, max:int):
     else:
         return False
 
+def validate_pwd_pt2(pwd: str, letter: str, min: int, max: int):
+    if pwd[min-1] == letter:
+        if pwd[max-1] != letter:
+            return True
+        else:
+            return False
+    else:
+        if pwd[max-1] == letter:
+            return True
+        else:
+            return False
+
 
 strings = []
 
-count = 0
+count_pt1 = 0
+count_pt2 = 0
 
 with open(r'input.txt') as f:
     for entry in f.readlines():
         strings.append((entry.strip()))
 
 for string in strings:
-    if validate_pwd(get_pwd(string), get_letter(string), get_min(string), get_max(string)):
-        count += 1
+    if validate_pwd_pt1(get_pwd(string), get_letter(string), get_min(string), get_max(string)):
+        count_pt1 += 1
 
-print(count)
+print(count_pt1)
+
+for string in strings:
+    if validate_pwd_pt2(get_pwd(string), get_letter(string), get_min(string), get_max(string)):
+        count_pt2 += 1
+
+print(count_pt2)
+
