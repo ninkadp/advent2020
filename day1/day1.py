@@ -11,8 +11,9 @@ def part_two(expenses):
                 if expense + expense2 + expense3 == 2020:
                     return expense * expense2 * expense3
 
+expenses = []
+
 if __name__ == 'main':
-    expenses = []
 
     with open(r'C:\Users\ndepalma\Desktop\advent_2020\day1\input.txt') as f:
         for expense in f.readlines():
